@@ -12,15 +12,14 @@ import java.io.*;
 public class Processor {
 
 
-    UserRepository repository;
+    DbService repository;
 
     private BufferedReader br;
     private Parse p;
     private String line = null;
     private User temp;
 
-
-    public Processor(BufferedReader br, UserRepository repository) {
+    public Processor(BufferedReader br, DbService repository) {
         this.br = br;
         this.repository = repository;
     }
@@ -33,7 +32,10 @@ public class Processor {
                 temp = p.getUser();
                 repository.save(temp);
 
+
             }
+            System.out.println("Closing buffered reader");
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

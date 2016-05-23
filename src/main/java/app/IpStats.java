@@ -10,8 +10,8 @@ public class IpStats {
     private long success;
     private long notFound;
     private long bytes=0;
-    private UserRepository repository;
-    public IpStats(String ip,UserRepository repository){
+    private DbService repository;
+    public IpStats(String ip,DbService repository){
         this.repository=repository;
         this.ip=ip;
 

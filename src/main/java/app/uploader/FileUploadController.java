@@ -1,13 +1,9 @@
 package app.uploader;
 
-import java.io.*;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
-import java.util.zip.GZIPInputStream;
+
 
 import app.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class FileUploadController {
     private String name=null;
 
-
+    private Tasker t;
     @Autowired
-    UserRepository repository;
+    DbService repository;
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String provideUploadInfo(Model model) {
@@ -40,17 +36,13 @@ public class FileUploadController {
             for (int i = 0; i < files.length; i++) {
                 try
                 {
-                    Tasker t=new Tasker(files[i].getInputStream(),repository);
+                    t=new Tasker(files[i].getInputStream(),repository);
                     exec.submit(t);
                     name = files[i].getOriginalFilename();
-
-
-                    //System.out.println(Thread.currentThread().getName());
-
                     System.out.println("Successfully uploaded "+name);
                 }
                 catch (Exception e) {
-                            System.out.println("You failed to upload " + name + " => " + e.getMessage());
+                    System.out.println("You failed to upload " + name + " => " + e.getMessage());
                 }
             }
         }
@@ -60,13 +52,12 @@ public class FileUploadController {
     @RequestMapping("/findByIP")
     public String getStatistics(@RequestParam(value="ip") String ip, RedirectAttributes redirectAttributes){
         IpStats stats=new IpStats(ip,repository);
-        //System.out.println(stats.getStats());
+
         if(repository.findByipAddress(ip).isEmpty())
             redirectAttributes.addFlashAttribute("message",
                     "ip not found");
         else
         redirectAttributes.addFlashAttribute("message", stats.getStats());
-
         return "redirect:/";
     }
 

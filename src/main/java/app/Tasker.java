@@ -8,16 +8,15 @@ import java.util.zip.GZIPInputStream;
 /**
  * Created by V3790148 on 5/19/2016.
  */
-public class Tasker implements Runnable {
+public class Tasker implements Runnable{
     private BufferedReader br=null;
     private GZIPInputStream gzstream;
     private Reader decoder;
     private Processor processor;
-    private UserRepository repository;
-    public Tasker(InputStream inputStream, UserRepository repository) throws IOException{
+    private DbService repository;
+    public Tasker(InputStream inputStream, DbService repository) throws IOException{
         this.repository=repository;
         gzstream=new GZIPInputStream(inputStream);
-
     }
 
     @Override
@@ -27,4 +26,6 @@ public class Tasker implements Runnable {
         processor=new Processor(br,repository);
         processor.Process();
     }
+
+
 }
