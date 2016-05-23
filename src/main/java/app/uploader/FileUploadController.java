@@ -29,16 +29,6 @@ public class FileUploadController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String provideUploadInfo(Model model) {
-        File rootFolder = new File(Application.ROOT);
-        List<String> fileNames = Arrays.stream(rootFolder.listFiles())
-                .map(f -> f.getName())
-                .collect(Collectors.toList());
-        model.addAttribute("files",
-                Arrays.stream(rootFolder.listFiles())
-                        .sorted(Comparator.comparingLong(f -> -1 * f.lastModified()))
-                        .map(f -> f.getName())
-                        .collect(Collectors.toList())
-        );
         return "uploadForm";
     }
 

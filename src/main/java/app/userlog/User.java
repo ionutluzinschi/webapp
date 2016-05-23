@@ -16,12 +16,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String ipAddress;
-   // private String request;
     private String response;
-   // private String date;
-   // private String referer;
     private String bytes;
-   // private String browser;
 
     protected User(){}
 

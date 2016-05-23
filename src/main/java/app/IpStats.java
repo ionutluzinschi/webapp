@@ -20,11 +20,12 @@ public class IpStats {
     public String getStats(){
         notFound=0;
         success=0;
+        bytes=0;
         for(User user:  repository.findByipAddress(ip)){
-            if(user.getResponse().equalsIgnoreCase("404"))
-                notFound++;
-            if(user.getResponse().equalsIgnoreCase("200"))
-                success++;
+            if(user.getResponse().equalsIgnoreCase("404")){
+                notFound++;}
+            if(user.getResponse().equalsIgnoreCase("200")){
+                success++;}
             bytes=bytes+Long.parseLong(user.getBytes());
 
         }
