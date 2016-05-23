@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -50,15 +51,18 @@ public class FileUploadController {
     }
 
     @RequestMapping("/findByIP")
-    public String getStatistics(@RequestParam(value="ip") String ip, RedirectAttributes redirectAttributes){
+    @ResponseBody
+    public String getStatistics(@RequestParam(value="ip") String ip){
         IpStats stats=new IpStats(ip,repository);
 
-        if(repository.findByipAddress(ip).isEmpty())
-            redirectAttributes.addFlashAttribute("message",
-                    "ip not found");
-        else
-        redirectAttributes.addFlashAttribute("message", stats.getStats());
-        return "redirect:/";
+
+
+        if(repository.findByipAddress(ip).isEmpty()){
+            return "ip not found";}
+        else{
+            return stats.getStats();
+
+            }
     }
 
 
