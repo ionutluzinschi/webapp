@@ -1,9 +1,6 @@
 package app.userlog;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import static java.lang.String.format;
 
@@ -11,12 +8,16 @@ import static java.lang.String.format;
  * Created by V3790148 on 5/18/2016.
  */
 @Entity
+@Table(name="user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @Column(nullable = false)
     private String ipAddress;
+    @Column(nullable = false)
     private String response;
+    @Column(nullable = false)
     private String bytes;
 
     protected User(){}

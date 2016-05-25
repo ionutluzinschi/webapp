@@ -76,5 +76,19 @@
     <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.7.21" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:4.2.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.h2database:h2:1.4.191" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://C:/Program Files (x86)/MySQL/Connector.J 5.1" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://C:/Program Files (x86)/MySQL/Connector.J 5.1" />
+          <root url="file://C:/Program Files (x86)/MySQL/Connector.J 5.1/src" />
+        </SOURCES>
+        <jarDirectory url="file://C:/Program Files (x86)/MySQL/Connector.J 5.1" recursive="false" />
+        <jarDirectory url="file://C:/Program Files (x86)/MySQL/Connector.J 5.1" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
   </component>
 </module>
