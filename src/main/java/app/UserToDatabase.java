@@ -1,6 +1,6 @@
 package app;
 
-import app.userlog.User;
+import app.userlog.UserLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +18,11 @@ public class UserToDatabase implements DbService {
     public UserToDatabase(){
     }
 
-    public void save(User user){
-        repository.save(user);
+    public void save(UserLog userLog){
+        repository.save(userLog);
     }
 
-    public List<User> findByipAddress(String ip){
+    public List<UserLog> findByipAddress(String ip){
         return repository.findByipAddress(ip);
     }
 

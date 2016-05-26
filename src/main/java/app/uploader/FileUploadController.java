@@ -1,11 +1,12 @@
 package app.uploader;
 
 
+import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-
 import app.*;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -15,9 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+
+
 @Controller
 public class FileUploadController {
+
     private String name=null;
+    private ObjectMapper mapper=new ObjectMapper();
 
     private Tasker t;
     @Autowired
@@ -49,25 +54,21 @@ public class FileUploadController {
                 return "uploadForm";
     }
 
-    @RequestMapping("/findByIP")
+    @RequestMapping("/IP")
     @ResponseBody
     public String getStatistics(@RequestParam(value="ip") String ip){
+        mapper.configure(MapperFeature.DEFAULT_VIEW_INCLUSION, false);
         IpStats stats=new IpStats(ip,repository);
+        stats.setStats();
 
-        if(repository.findByipAddress(ip).isEmpty()){
-            return "ip not found";}
-        else{
-            return stats.getStats();
-
+            try {
+                return mapper.writerWithView(Views.Extended.class).writeValueAsString(stats);
             }
+            catch(IOException e){e.printStackTrace();}
+
+
+        return "ip not found";
+    }
     }
 
-
-
-
-
-
-
-
-}
 

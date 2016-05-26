@@ -1,7 +1,6 @@
 package app;
 
-import app.userlog.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import app.userlog.UserLog;
 
 import java.io.*;
 
@@ -17,7 +16,7 @@ public class Processor {
     private BufferedReader br;
     private Parse p;
     private String line = null;
-    private User temp;
+    private UserLog temp;
 
     public Processor(BufferedReader br, DbService repository) {
         this.br = br;

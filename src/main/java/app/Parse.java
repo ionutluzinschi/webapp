@@ -1,6 +1,6 @@
 package app;
 
-import app.userlog.User;
+import app.userlog.UserLog;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,7 +21,7 @@ public class Parse {
         this.line=line;
     }
 
-    public User getUser(){
+    public UserLog getUser(){
         Pattern pattern=Pattern.compile(logEntryPattern);
         Matcher matcher=pattern.matcher(line);
         if(matcher.matches()) {
@@ -29,7 +29,7 @@ public class Parse {
             response = matcher.group(6);
             bytes = matcher.group(7);
         }
-        return new User(ipAddress,response,bytes);
+        return new UserLog(ipAddress,response,bytes);
 
     }
 
