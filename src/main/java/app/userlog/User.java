@@ -8,16 +8,16 @@ import static java.lang.String.format;
  * Created by V3790148 on 5/18/2016.
  */
 @Entity
-@Table(name="user")
+@Table(name="user_logs")
 public class User {
-    @Id
+   @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(nullable = false)
+    @Column(name="IP")
     private String ipAddress;
-    @Column(nullable = false)
+    @Column(name="Response",nullable = false)
     private String response;
-    @Column(nullable = false)
+    @Column(name="Bytes",nullable = false)
     private String bytes;
 
     protected User(){}
@@ -26,7 +26,6 @@ public class User {
         this.ipAddress = ipAddress;
         this.response=response;
         this.bytes=bytes;
-
     }
     public void setIpAddress(String ipAddress){
         this.ipAddress = ipAddress;
