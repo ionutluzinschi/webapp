@@ -1,4 +1,4 @@
-package app;
+package app.db;
 
 import app.userlog.User;
 

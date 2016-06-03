@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 
 
 import app.*;
+import app.db.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -28,6 +29,7 @@ public class FileUploadController {
         return "uploadForm";
     }
 
+
     @RequestMapping(method = RequestMethod.POST, value = "/")
     public String handleFileUpload(@RequestParam("files") MultipartFile[] files) {
 
@@ -46,10 +48,16 @@ public class FileUploadController {
                 }
             }
         }
-                return "uploadForm";
+
+        StringBuilder sb=new StringBuilder();
+        sb.append("<html><body>You have uploaded ");
+        sb.append(files.length);
+        sb.append("!</body></html>");
+
+                return "success";
     }
 
-    @RequestMapping("/findByIP")
+    @RequestMapping("/IP")
     @ResponseBody
     public String getStatistics(@RequestParam(value="ip") String ip){
         IpStats stats=new IpStats(ip,repository);

@@ -1,5 +1,6 @@
 package app;
 
+import app.db.DbService;
 import app.userlog.User;
 
 /**

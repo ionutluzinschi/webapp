@@ -1,6 +1,6 @@
 package app;
 
-import org.springframework.stereotype.Repository;
+import app.db.DbService;
 
 import java.io.*;
 import java.util.zip.GZIPInputStream;

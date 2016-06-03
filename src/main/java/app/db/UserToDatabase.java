@@ -1,5 +1,7 @@
-package app;
+package app.db;
 
+import app.db.DbService;
+import app.db.UserRepository;
 import app.userlog.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
